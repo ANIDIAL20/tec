@@ -62,8 +62,7 @@ export default function HomePage() {
         });
 
         const data = {
-          nom: (document.getElementById('nom_complet') as HTMLInputElement).value,
-          prenom: '',
+          nom_complet: (document.getElementById('nom_complet') as HTMLInputElement).value,
           telephone: (document.getElementById('tel') as HTMLInputElement).value,
           ville: (document.getElementById('ville') as HTMLInputElement).value,
           region: (document.getElementById('region') as HTMLSelectElement).value,
@@ -71,7 +70,7 @@ export default function HomePage() {
           email: (document.getElementById('email') as HTMLInputElement).value,
           niveau: (document.getElementById('niveau') as HTMLSelectElement).value,
           motivations: Array.from(document.querySelectorAll('input[name="motivations"]:checked')).map(function(cb){ return (cb as HTMLInputElement).value; }).join(', '),
-          notes: (document.getElementById('message') as HTMLTextAreaElement).value
+          message: (document.getElementById('message') as HTMLTextAreaElement).value
         };
 
         requiredFields.forEach(function(id) {
@@ -1123,7 +1122,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
 
         {/* RIGHT */}
     <div className="footer-contact">
-      <a href="tel:+212608635578" className="footer-phone">+212 608 635 578</a>
+      <a href="tel:+212664740055" className="footer-phone">+212 664740055</a>
       <a href="mailto:trainingedgeconsulting@gmail.com" className="footer-email">trainingedgeconsulting@gmail.com</a>
       <a href="https://wa.me/212608635578" target="_blank" rel="noopener noreferrer" className="footer-wa" aria-label="Contacter sur WhatsApp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
