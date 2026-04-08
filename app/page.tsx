@@ -3,8 +3,8 @@
 export default function HomePage() {
   return (
     <>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;600&family=Space+Mono&family=Noto+Naskh+Arabic:wght@700&display=swap');
-
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;600&family=Space+Mono&family=Noto+Naskh+Arabic:wght@700&display=swap');
 /* ── RESET ── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
@@ -665,317 +665,317 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   .btn-primary, .btn-ghost { text-align: center; width: 100%; }
   .section { padding: 40px 16px; }
   .term-body { font-size: 10px; line-height: 1.9; }
-}`}</style>
+}
+      `}</style>
+      
+<!-- ━━━━ NAVBAR ━━━━ -->
+<nav className="navbar" role="navigation" aria-label="Navigation principale">
+  <a href="#hero" className="nav-brand"><img src="logo.png" alt="TEC Groupe" className="nav-logo" /></a>
+  <ul className="nav-links" role="list">
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#pourquoi">Résultats</a></li>
+    <li><a href="#postuler">Candidater</a></li>
+  </ul>
+  <a href="#postuler" className="nav-cta">POSTULER →</a>
+</nav>
 
-      {/* ━━━━ NAVBAR ━━━━ */}
-      <nav className="navbar" role="navigation" aria-label="Navigation principale">
-        <a href="#hero" className="nav-brand"><img src="logo.png" alt="TEC Groupe" className="nav-logo" /></a>
-        <ul className="nav-links" role="list">
-          <li><a href="#programme">Programme</a></li>
-          <li><a href="#pourquoi">Résultats</a></li>
-          <li><a href="#postuler">Candidater</a></li>
-        </ul>
-        <a href="#postuler" className="nav-cta">POSTULER →</a>
-      </nav>
+<!-- ━━━━ HERO ━━━━ -->
+<section id="hero" aria-label="Section principale">
 
-      {/* ━━━━ HERO ━━━━ */}
-      <section id="hero" aria-label="Section principale">
+  <div className="streaks" aria-hidden="true">
+    <div className="streak"></div>
+    <div className="streak"></div>
+    <div className="streak"></div>
+    <div className="streak"></div>
+    <div className="streak"></div>
+  </div>
+  <div className="glow" aria-hidden="true"></div>
+  <div className="deco" aria-hidden="true"></div>
 
-        <div className="streaks" aria-hidden="true">
-          <div className="streak"></div>
-          <div className="streak"></div>
-          <div className="streak"></div>
-          <div className="streak"></div>
-          <div className="streak"></div>
+  <!-- Logos -->
+  <div className="logos">
+    <div className="logo-wrap">
+      <img className="logo-img" src="logo.png" alt="TEC Groupe" />
+      <span className="logo-label">Opérateur</span>
+    </div>
+    <span className="logo-sep" aria-hidden="true">×</span>
+    <div className="logo-wrap">
+      <img className="logo-img" src="logounfm_fc561731bb.png" alt="UNFM" />
+      <span className="logo-label">Partenaire</span>
+    </div>
+    <span className="logo-sep" aria-hidden="true">|</span>
+    <div className="logo-wrap">
+      <img className="logo-img" src="LOGO_ANAPEC.png" alt="ANAPEC" />
+      <span className="logo-label">Bailleur</span>
+    </div>
+    <div className="logo-wrap">
+      <img className="logo-img" src="c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
+      <span className="logo-label">Partenaire</span>
+    </div>
+    <span className="logo-sep" style={{ opacity: '0.3' }}>|</span>
+  </div>
+
+  <!-- Hero Content -->
+  <div className="hero-content">
+    <div className="badge-row">
+      <span className="badge bg">// GROUPE_06</span>
+      <span className="badge bc">FRANÇAIS PRO</span>
+      <span className="badge br">⚠ 16 PLACES</span>
+    </div>
+
+    <h1 className="hero-title">INSCRIPTION<br />EN LIGNE</h1>
+    <div className="hero-ar" aria-label="التسجيل عبر الإنترنت — الفوج السادس">التسجيل عبر الإنترنت — الفوج السادس</div>
+
+    <div className="divider" aria-hidden="true"></div>
+
+    <p className="hero-desc">
+      Formation 100% gratuite à Béni-Mellal · 16 places disponibles<br />
+      Sélection sur entretien individuel — Session 2026
+    </p>
+
+    <div className="hero-actions">
+      <a href="#postuler" className="btn-primary">POSTULER MAINTENANT →</a>
+      <a href="#programme" className="btn-ghost">Voir le programme</a>
+    </div>
+  </div>
+
+  <!-- Scroll arrow -->
+  <a href="#programme" className="scroll-arrow" aria-label="Défiler vers le bas">↓</a>
+</section>
+
+<!-- ━━━━ PROGRAMME ━━━━ -->
+<div id="programme" style={{ background: '#080808' }}>
+  <div className="section">
+    <div className="section-kicker">// Status</div>
+    <h2 className="section-title">LE PROGRAMME</h2>
+    <p className="section-sub">Formation Français Professionnel, 100% prise en charge, en partenariat avec C4EE et AQJ.</p>
+
+    <div className="term" role="region" aria-label="Terminal de statut">
+      <div className="term-head">
+        <div className="td r"></div><div className="td y"></div><div className="td g"></div>
+        <span className="tlabel">status.sh</span>
+      </div>
+      <div className="term-body">
+        <div><span className="tg">$ </span><span className="tw">registration --check-availability</span></div>
+        <div><span className="tc">✓  Session 2026 active</span></div>
+        <div><span className="tc">✓  Lieu : Béni-Mellal</span></div>
+        <div><span className="ty">⚠  Dernier délai : 15 Avril</span></div>
+        <div><span className="tm">#  Remplissez le formulaire ci-dessous</span></div>
+        <div><span className="tg">›  </span><span className="cur" aria-hidden="true"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━ RÉSULTATS ━━━━ -->
+<div id="pourquoi" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
+  <div className="section">
+    <div className="section-kicker">// Chiffres clés</div>
+    <h2 className="section-title">NOS RÉSULTATS</h2>
+    <p className="section-sub">5 promotions réussies, des résultats prouvés sur le terrain à Béni-Mellal et la région.</p>
+
+    <div className="stats-grid" role="list">
+      <div className="stat" role="listitem">
+        <div className="stat-n" data-target="100" data-suffix="%">100%</div>
+        <div className="stat-l">Gratuit</div>
+      </div>
+      <div className="stat" role="listitem">
+        <div className="stat-n" data-target="4" data-suffix="">4</div>
+        <div className="stat-l">Mois de<br />formation</div>
+      </div>
+      <div className="stat" role="listitem">
+        <div className="stat-n" data-target="" data-suffix="">G06</div>
+        <div className="stat-l">Promotion<br />en cours</div>
+      </div>
+      <div className="stat" role="listitem">
+        <div className="stat-n" data-target="16" data-suffix="">16</div>
+        <div className="stat-l">Places<br />disponibles</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━ FORMULAIRE ━━━━ -->
+<div id="postuler" style={{ background: 'var(--surface)', borderTop: '3px solid var(--orange)' }}>
+  <div className="section">
+    <div className="section-kicker">// Dossier de candidature</div>
+    <h2 className="section-title">FORMULAIRE DE SÉLECTION</h2>
+    <p className="section-sub">Veuillez remplir vos informations réelles pour être contacté pour l'entretien.</p>
+
+    <!-- FORM -->
+    <form id="inscriptionForm" noValidate>
+      <div className="form-grid">
+        <!-- ROW 1 -->
+        <div className="form-group">
+          <label className="form-label" htmlFor="nom_complet">NOM COMPLET *</label>
+          <input type="text" id="nom_complet" name="nom_complet" className="form-input" placeholder="ex: Ahmed El Mansouri" required />
         </div>
-        <div className="glow" aria-hidden="true"></div>
-        <div className="deco" aria-hidden="true"></div>
-
-        {/* Logos */}
-        <div className="logos">
-          <div className="logo-wrap">
-            <img className="logo-img" src="logo.png" alt="TEC Groupe" />
-            <span className="logo-label">Opérateur</span>
-          </div>
-          <span className="logo-sep" aria-hidden="true">×</span>
-          <div className="logo-wrap">
-            <img className="logo-img" src="logounfm_fc561731bb.png" alt="UNFM" />
-            <span className="logo-label">Partenaire</span>
-          </div>
-          <span className="logo-sep" aria-hidden="true">|</span>
-          <div className="logo-wrap">
-            <img className="logo-img" src="LOGO_ANAPEC.png" alt="ANAPEC" />
-            <span className="logo-label">Bailleur</span>
-          </div>
-          <div className="logo-wrap">
-            <img className="logo-img" src="c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
-            <span className="logo-label">Partenaire</span>
-          </div>
-          <span className="logo-sep" style={{ opacity: 0.3 }}>|</span>
+        <div className="form-group">
+          <label className="form-label" htmlFor="age">ÂGE *</label>
+          <input type="number" id="age" name="age" className="form-input" placeholder="ex: 24" min="18" max="45" required />
+        </div>
+        <!-- ROW 2 -->
+        <div className="form-group">
+          <label className="form-label" htmlFor="tel">TÉLÉPHONE (WHATSAPP) *</label>
+          <input type="tel" id="tel" name="telephone" className="form-input" placeholder="0600000000" required style={{ pointerEvents: 'auto', cursor: 'text', position: 'relative', zIndex: '10' }} />
+        </div>
+        <div className="form-group">
+          <label className="form-label" htmlFor="email">EMAIL</label>
+          <input type="email" id="email" name="email" className="form-input" placeholder="ex: ahmed@gmail.com" />
+        </div>
+        <!-- ROW 3 -->
+        <div className="form-group">
+          <label className="form-label" htmlFor="region">RÉGION *</label>
+          <select id="region" name="region" className="form-select" required>
+            <option value="">Choisir...</option>
+            <option>Béni Mellal-Khénifra</option>
+            <option>Casablanca-Settat</option>
+            <option>Marrakech-Safi</option>
+            <option>Souss-Massa</option>
+            <option>Drâa-Tafilalet</option>
+            <option>Fès-Meknès</option>
+            <option>Rabat-Salé-Kénitra</option>
+            <option>Tanger-Tétouan-Al Hoceïma</option>
+            <option>Oriental</option>
+            <option>Guelmim-Oued Noun</option>
+            <option>Laâyoune-Sakia El Hamra</option>
+            <option>Dakhla-Oued Ed-Dahab</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label className="form-label" htmlFor="ville">VILLE *</label>
+          <input type="text" id="ville" name="ville" className="form-input" placeholder="ex: Béni Mellal" required />
+        </div>
+        <div className="form-group full">
+          <label className="form-label" htmlFor="niveau">Niveau d'études *</label>
+          <select id="niveau" className="form-select" required>
+            <option value="">Choisir...</option>
+            <option value="bac">Bac (Baccalauréat)</option>
+            <option value="bac+1">Bac +1</option>
+            <option value="bac+2">Bac +2 (DUT / BTS / DEUST)</option>
+            <option value="bac+3">Bac +3 (Licence)</option>
+            <option value="bac+4">Bac +4 (Master 1)</option>
+            <option value="bac+5">Bac +5 (Master 2 / Ingénieur)</option>
+            <option value="doctorat">Doctorat</option>
+            <option value="ofppt">Formation Professionnelle (OFPPT)</option>
+            <option value="autre">Autre</option>
+          </select>
         </div>
 
-        {/* Hero Content */}
-        <div className="hero-content">
-          <div className="badge-row">
-            <span className="badge bg">// GROUPE_06</span>
-            <span className="badge bc">FRANÇAIS PRO</span>
-            <span className="badge br">⚠ 16 PLACES</span>
-          </div>
+        <div className="form-divider"></div>
 
-          <h1 className="hero-title">INSCRIPTION<br />EN LIGNE</h1>
-          <div className="hero-ar" aria-label="التسجيل عبر الإنترنت — الفوج السادس">التسجيل عبر الإنترنت — الفوج السادس</div>
-
-          <div className="divider" aria-hidden="true"></div>
-
-          <p className="hero-desc">
-            Formation 100% gratuite à Béni-Mellal · 16 places disponibles<br />
-            Sélection sur entretien individuel — Session 2026
-          </p>
-
-          <div className="hero-actions">
-            <a href="#postuler" className="btn-primary">POSTULER MAINTENANT →</a>
-            <a href="#programme" className="btn-ghost">Voir le programme</a>
+        <div className="form-group full">
+          <label className="form-label">Pourquoi voulez-vous rejoindre cette formation ?</label>
+          <div className="radio-group">
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="emploi" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Trouver un emploi (salarié ou indépendant)</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="blocage" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Surmonter le blocage après le diplôme</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="softskills" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Développer mes soft skills &amp; confiance en moi</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="projet" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Créer mon propre projet / auto-emploi</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="employabilite" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Améliorer mon employabilité sur le marché</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="coach" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Être accompagné(e) par un coach professionnel</span>
+            </label>
+            <label className="radio-item">
+              <input type="checkbox" name="motivations" value="autre" />
+              <span className="radio-box"></span>
+              <span className="radio-text">Autre</span>
+            </label>
           </div>
         </div>
 
-        {/* Scroll arrow */}
-        <a href="#programme" className="scroll-arrow" aria-label="Défiler vers le bas">↓</a>
-      </section>
+        <div className="form-group full">
+          <label className="form-label" htmlFor="message">Message Additionnel (Optionnel)</label>
+          <textarea id="message" className="form-textarea" placeholder="Parlez-nous brièvement de votre parcours..."></textarea>
+        </div>
 
-      {/* ━━━━ PROGRAMME ━━━━ */}
-      <div id="programme" style={{ background: '#080808' }}>
-        <div className="section">
-          <div className="section-kicker">// Status</div>
-          <h2 className="section-title">LE PROGRAMME</h2>
-          <p className="section-sub">Formation Français Professionnel, 100% prise en charge, en partenariat avec C4EE et AQJ.</p>
-
-          <div className="term" role="region" aria-label="Terminal de statut">
-            <div className="term-head">
-              <div className="td r"></div><div className="td y"></div><div className="td g"></div>
-              <span className="tlabel">status.sh</span>
-            </div>
-            <div className="term-body">
-              <div><span className="tg">$ </span><span className="tw">registration --check-availability</span></div>
-              <div><span className="tc">✓  Session 2026 active</span></div>
-              <div><span className="tc">✓  Lieu : Béni-Mellal</span></div>
-              <div><span className="ty">⚠  Dernier délai : 15 Avril</span></div>
-              <div><span className="tm">#  Remplissez le formulaire ci-dessous</span></div>
-              <div><span className="tg">›  </span><span className="cur" aria-hidden="true"></span></div>
-            </div>
+        <div className="form-submit-row">
+          <div className="form-note">
+            En cliquant, vous acceptez d'être contacté<br />
+            par <span>TEC GROUPE</span> pour un entretien.
           </div>
+          <button type="submit" className="submit-btn">Envoyer Candidature →</button>
         </div>
       </div>
+    </form>
 
-      {/* ━━━━ RÉSULTATS ━━━━ */}
-      <div id="pourquoi" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
-        <div className="section">
-          <div className="section-kicker">// Chiffres clés</div>
-          <h2 className="section-title">NOS RÉSULTATS</h2>
-          <p className="section-sub">5 promotions réussies, des résultats prouvés sur le terrain à Béni-Mellal et la région.</p>
+    <!-- Success message -->
+    <div id="successMsg" role="alert" aria-live="polite">
+      <span className="success-icon" aria-hidden="true">✓</span>
+      <div className="success-title">Candidature envoyée ✓</div>
+      <p className="success-sub">Notre équipe vous contactera sous 48h</p>
+      <p className="success-ar">سنتواصل معك قريباً</p>
+    </div>
+  </div>
+</div>
 
-          <div className="stats-grid" role="list">
-            <div className="stat" role="listitem">
-              <div className="stat-n" data-target="100" data-suffix="%">100%</div>
-              <div className="stat-l">Gratuit</div>
-            </div>
-            <div className="stat" role="listitem">
-              <div className="stat-n" data-target="4" data-suffix="">4</div>
-              <div className="stat-l">Mois de<br />formation</div>
-            </div>
-            <div className="stat" role="listitem">
-              <div className="stat-n" data-target="" data-suffix="">G06</div>
-              <div className="stat-l">Promotion<br />en cours</div>
-            </div>
-            <div className="stat" role="listitem">
-              <div className="stat-n" data-target="16" data-suffix="">16</div>
-              <div className="stat-l">Places<br />disponibles</div>
-            </div>
-          </div>
-        </div>
+<!-- ━━━━ FOOTER ━━━━ -->
+<footer className="site-footer" role="contentinfo">
+  <div className="footer-inner">
+    <!-- LEFT -->
+    <div className="footer-col">
+      <div className="footer-brand-name">Training Edge Consulting</div>
+      <div className="footer-partners-row">
+        <span className="footer-brand-sub">× C4EE × AQJ × Anapec × Swisscontact × HSLU Lucerne</span>
+        <span className="footer-partner-sep">·</span>
+        
       </div>
+      <div className="footer-copy">© 2026 — Béni-Mellal, Maroc</div>
+    </div>
 
-      {/* ━━━━ FORMULAIRE ━━━━ */}
-      <div id="postuler" style={{ background: 'var(--surface)', borderTop: '3px solid var(--orange)' }}>
-        <div className="section">
-          <div className="section-kicker">// Dossier de candidature</div>
-          <h2 className="section-title">FORMULAIRE DE SÉLECTION</h2>
-          <p className="section-sub">Veuillez remplir vos informations réelles pour être contacté pour l'entretien.</p>
+    <!-- CENTER -->
+    <nav className="footer-nav" aria-label="Liens du site">
+      <a href="#hero">Accueil</a>
+      <a href="#programme">Programme</a>
+      <a href="#pourquoi">Résultats</a>
+      <a href="#postuler">Candidater</a>
+    </nav>
 
-          {/* FORM */}
-          <form id="inscriptionForm" noValidate>
-            <div className="form-grid">
-              {/* ROW 1 */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="nom_complet">NOM COMPLET *</label>
-                <input type="text" id="nom_complet" name="nom_complet" className="form-input" placeholder="ex: Ahmed El Mansouri" required />
-              </div>
-              <div className="form-group">
-                <label className="form-label" htmlFor="age">ÂGE *</label>
-                <input type="number" id="age" name="age" className="form-input" placeholder="ex: 24" min="18" max="45" required />
-              </div>
-              {/* ROW 2 */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="tel">TÉLÉPHONE (WHATSAPP) *</label>
-                <input type="tel" id="tel" name="telephone" className="form-input" placeholder="0600000000" required style={{ pointerEvents: 'auto', cursor: 'text', position: 'relative', zIndex: 10 }} />
-              </div>
-              <div className="form-group">
-                <label className="form-label" htmlFor="email">EMAIL</label>
-                <input type="email" id="email" name="email" className="form-input" placeholder="ex: ahmed@gmail.com" />
-              </div>
-              {/* ROW 3 */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="region">RÉGION *</label>
-                <select id="region" name="region" className="form-select" required>
-                  <option value="">Choisir...</option>
-                  <option>Béni Mellal-Khénifra</option>
-                  <option>Casablanca-Settat</option>
-                  <option>Marrakech-Safi</option>
-                  <option>Souss-Massa</option>
-                  <option>Drâa-Tafilalet</option>
-                  <option>Fès-Meknès</option>
-                  <option>Rabat-Salé-Kénitra</option>
-                  <option>Tanger-Tétouan-Al Hoceïma</option>
-                  <option>Oriental</option>
-                  <option>Guelmim-Oued Noun</option>
-                  <option>Laâyoune-Sakia El Hamra</option>
-                  <option>Dakhla-Oued Ed-Dahab</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="form-label" htmlFor="ville">VILLE *</label>
-                <input type="text" id="ville" name="ville" className="form-input" placeholder="ex: Béni Mellal" required />
-              </div>
-              <div className="form-group full">
-                <label className="form-label" htmlFor="niveau">Niveau d'études *</label>
-                <select id="niveau" className="form-select" required>
-                  <option value="">Choisir...</option>
-                  <option value="bac">Bac (Baccalauréat)</option>
-                  <option value="bac+1">Bac +1</option>
-                  <option value="bac+2">Bac +2 (DUT / BTS / DEUST)</option>
-                  <option value="bac+3">Bac +3 (Licence)</option>
-                  <option value="bac+4">Bac +4 (Master 1)</option>
-                  <option value="bac+5">Bac +5 (Master 2 / Ingénieur)</option>
-                  <option value="doctorat">Doctorat</option>
-                  <option value="ofppt">Formation Professionnelle (OFPPT)</option>
-                  <option value="autre">Autre</option>
-                </select>
-              </div>
+    <!-- RIGHT -->
+    <div className="footer-contact">
+      <a href="tel:+212608635578" className="footer-phone">+212 608 635 578</a>
+      <a href="mailto:trainingedgeconsulting@gmail.com" className="footer-email">trainingedgeconsulting@gmail.com</a>
+      <a href="https://wa.me/212608635578" target="_blank" rel="noopener noreferrer" className="footer-wa" aria-label="Contacter sur WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
 
-              <div className="form-divider"></div>
+  <div className="footer-bottom">
+    <span className="footer-bottom-text">TRAINING EDGE CONSULTING — Formation Groupe 06 · 2026 · Béni-Mellal</span>
+    <span className="footer-bottom-text">Tous droits réservés · Training Edge Consulting</span>
+  </div>
+</footer>
 
-              <div className="form-group full">
-                <label className="form-label">Pourquoi voulez-vous rejoindre cette formation ?</label>
-                <div className="radio-group">
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="emploi" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Trouver un emploi (salarié ou indépendant)</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="blocage" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Surmonter le blocage après le diplôme</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="softskills" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Développer mes soft skills &amp; confiance en moi</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="projet" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Créer mon propre projet / auto-emploi</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="employabilite" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Améliorer mon employabilité sur le marché</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="coach" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Être accompagné(e) par un coach professionnel</span>
-                  </label>
-                  <label className="radio-item">
-                    <input type="checkbox" name="motivations" value="autre" />
-                    <span className="radio-box"></span>
-                    <span className="radio-text">Autre</span>
-                  </label>
-                </div>
-              </div>
+<!-- ━━━━ JAVASCRIPT ━━━━ -->
 
-              <div className="form-group full">
-                <label className="form-label" htmlFor="message">Message Additionnel (Optionnel)</label>
-                <textarea id="message" className="form-textarea" placeholder="Parlez-nous brièvement de votre parcours..."></textarea>
-              </div>
-
-              <div className="form-submit-row">
-                <div className="form-note">
-                  En cliquant, vous acceptez d'être contacté<br />
-                  par <span>TEC GROUPE</span> pour un entretien.
-                </div>
-                <button type="submit" className="submit-btn">Envoyer Candidature →</button>
-              </div>
-            </div>
-          </form>
-
-          {/* Success message */}
-          <div id="successMsg" role="alert" aria-live="polite">
-            <span className="success-icon" aria-hidden="true">✓</span>
-            <div className="success-title">Candidature envoyée ✓</div>
-            <p className="success-sub">Notre équipe vous contactera sous 48h</p>
-            <p className="success-ar">سنتواصل معك قريباً</p>
-          </div>
-        </div>
-      </div>
-
-      {/* ━━━━ FOOTER ━━━━ */}
-      <footer className="site-footer" role="contentinfo">
-        <div className="footer-inner">
-          {/* LEFT */}
-          <div className="footer-col">
-            <div className="footer-brand-name">Training Edge Consulting</div>
-            <div className="footer-partners-row">
-              <span className="footer-brand-sub">× C4EE × AQJ × Anapec × Swisscontact × HSLU Lucerne</span>
-              <span className="footer-partner-sep">·</span>
-
-            </div>
-            <div className="footer-copy">© 2026 — Béni-Mellal, Maroc</div>
-          </div>
-
-          {/* CENTER */}
-          <nav className="footer-nav" aria-label="Liens du site">
-            <a href="#hero">Accueil</a>
-            <a href="#programme">Programme</a>
-            <a href="#pourquoi">Résultats</a>
-            <a href="#postuler">Candidater</a>
-          </nav>
-
-          {/* RIGHT */}
-          <div className="footer-contact">
-            <a href="tel:+212608635578" className="footer-phone">+212 608 635 578</a>
-            <a href="mailto:trainingedgeconsulting@gmail.com" className="footer-email">trainingedgeconsulting@gmail.com</a>
-            <a href="https://wa.me/212608635578" target="_blank" rel="noopener noreferrer" className="footer-wa" aria-label="Contacter sur WhatsApp">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <span className="footer-bottom-text">TRAINING EDGE CONSULTING — Formation Groupe 06 · 2026 · Béni-Mellal</span>
-          <span className="footer-bottom-text">Tous droits réservés · Training Edge Consulting</span>
-        </div>
-      </footer>
-
-      {/* ━━━━ JAVASCRIPT ━━━━ */}
-
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `const API_URL = '/api/candidatures';
-
+      
+      <script dangerouslySetInnerHTML={{__html: `
+        const API_URL = '/api/candidatures';
 /* ── COUNT-UP ANIMATION ── */
 function countUp(el, target, duration) {
   duration = duration || 1500;
@@ -1119,9 +1119,8 @@ const sectionObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.4 });
 
-sections.forEach(function(s) { sectionObserver.observe(s); });`,
-        }}
-      />
+sections.forEach(function(s) { sectionObserver.observe(s); });
+      `}} />
     </>
   );
 }
