@@ -855,26 +855,33 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   <div className="deco" aria-hidden="true"></div>
 
     {/* Logos */}
-  <div className="logos">
-    <div className="logo-wrap">
-      <img className="logo-img" src="/logo.png" alt="TEC Groupe" />
-      <span className="logo-label">Opérateur</span>
+  <div class="logos">
+    <div class="logo-wrap">
+      <img class="logo-img" src="logo.png" alt="TEC Groupe">
+      <span class="logo-label">Opérateur</span>
     </div>
-    <span className="logo-sep" aria-hidden="true">×</span>
-    <div className="logo-wrap">
-      <img className="logo-img" src="/logounfm_fc561731bb.png" alt="UNFM" />
-      <span className="logo-label">Partenaire</span>
+    <span class="logo-sep" aria-hidden="true">×</span>
+    <div class="logo-wrap">
+      <img class="logo-img" src="logo_aqj__1_-removebg-preview.png" alt="AQJ">
+      <span class="logo-label">Partenaire</span>
     </div>
-    <span className="logo-sep" aria-hidden="true">|</span>
-    <div className="logo-wrap">
-      <img className="logo-img" src="/LOGO_ANAPEC.png" alt="ANAPEC" />
-      <span className="logo-label">Bailleur</span>
+        <span class="logo-sep" aria-hidden="true">|</span>
+
+    <div class="logo-wrap">
+      <img class="logo-img" src="logounfm_fc561731bb.png" alt="UNFM">
+      <span class="logo-label">Partenaire</span>
     </div>
-    <div className="logo-wrap">
-      <img className="logo-img" src="/c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
-      <span className="logo-label">Partenaire</span>
+    <span class="logo-sep" aria-hidden="true">|</span>
+    <div class="logo-wrap">
+      <img class="logo-img" src="LOGO_ANAPEC.png" alt="ANAPEC">
+      <span class="logo-label">Partenaire</span>
     </div>
-    <span className="logo-sep" style={{ opacity: '0.3' }}>|</span>
+        <span class="logo-sep" aria-hidden="true">|</span>
+
+    <div class="logo-wrap">
+      <img class="logo-img" src="c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact">
+      <span class="logo-label">Partenaire</span>
+    </div>
   </div>
 
     {/* Hero Content */}
@@ -910,7 +917,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   <div className="section">
     <div className="section-kicker">// Status</div>
     <h2 className="section-title">LE PROGRAMME</h2>
-    <p className="section-sub">Formation Français Professionnel, 100% prise en charge, en partenariat avec C4EE et AQJ.</p>
+    <p className="section-sub">Le programme TRAINENIG EDGE CONSULTING intègre une formation en Français Professionnel au sein d'un cycle complet de coaching, pour faciliter l'accès des jeunes au monde de l'entreprise et à l'indépendance économique.</p>
 
     <div className="term" role="region" aria-label="Terminal de statut">
       <div className="term-head">
