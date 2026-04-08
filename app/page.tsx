@@ -1,6 +1,168 @@
 'use client';
 
+import { useEffect } from 'react';
+
+
 export default function HomePage() {
+  useEffect(() => {
+    const API_URL = '/api/candidatures';
+
+    /* ── COUNT-UP ANIMATION ── */
+    function countUp(el: HTMLElement, target: number, duration: number = 1500) {
+      let start = 0;
+      let step = target / 60;
+      let suffix = el.dataset.suffix || '';
+      let timer = setInterval(function() {
+        start += step;
+        if (start >= target) {
+          el.textContent = target + suffix;
+          clearInterval(timer);
+          return;
+        }
+        el.textContent = Math.floor(start) + suffix;
+      }, duration / 60);
+    }
+
+    // IntersectionObserver for stats
+    const statsEl = document.querySelector('.stats-grid');
+    let statsObserver: IntersectionObserver | null = null;
+    if (statsEl) {
+      let fired = false;
+      statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !fired) {
+            fired = true;
+            document.querySelectorAll('.stat-n').forEach(function(el) {
+              const htmlEl = el as HTMLElement;
+              const target = parseInt(htmlEl.dataset.target || '0', 10);
+              if (!isNaN(target) && target > 0) {
+                countUp(htmlEl, target, 1500);
+              }
+            });
+            statsObserver?.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      statsObserver.observe(statsEl);
+    }
+
+    /* ── FORM VALIDATION & SUBMISSION ── */
+    const form = document.getElementById('inscriptionForm') as HTMLFormElement;
+    if (form) {
+      form.addEventListener('submit', async function(e: SubmitEvent) {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+        const requiredFields = ['nom_complet', 'age', 'tel', 'region', 'ville', 'niveau'];
+        let valid = true;
+
+        // Clear previous errors
+        document.querySelectorAll('.form-input, .form-select').forEach(function(el) {
+          el.classList.remove('error');
+        });
+
+        const data = {
+          nom: (document.getElementById('nom_complet') as HTMLInputElement).value,
+          prenom: '',
+          telephone: (document.getElementById('tel') as HTMLInputElement).value,
+          ville: (document.getElementById('ville') as HTMLInputElement).value,
+          region: (document.getElementById('region') as HTMLSelectElement).value,
+          age: (document.getElementById('age') as HTMLInputElement).value,
+          email: (document.getElementById('email') as HTMLInputElement).value,
+          niveau: (document.getElementById('niveau') as HTMLSelectElement).value,
+          motivations: Array.from(document.querySelectorAll('input[name="motivations"]:checked')).map(function(cb){ return (cb as HTMLInputElement).value; }).join(', '),
+          notes: (document.getElementById('message') as HTMLTextAreaElement).value
+        };
+
+        requiredFields.forEach(function(id) {
+          const el = document.getElementById(id) as HTMLInputElement | HTMLSelectElement;
+          if (!el) return;
+          if (!el.value || el.value.trim() === '') {
+            el.classList.add('error');
+            valid = false;
+          }
+        });
+
+        // Phone Validation (Maroc)
+        const phoneEl = document.getElementById('tel') as HTMLInputElement;
+        const phoneRegex = /^(\+212|00212|0)[5-9]\d{8}$/;
+        if (phoneEl && !phoneRegex.test(phoneEl.value.replace(/\s/g,''))) {
+          phoneEl.classList.add('error');
+          valid = false;
+        }
+
+        if (!valid) {
+          const firstError = document.querySelector('.error') as HTMLElement;
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+          return;
+        }
+
+        // Loading state
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi en cours...';
+
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const json = await res.json();
+
+          if (!res.ok) throw new Error(json.error || 'Erreur lors de l\'envoi');
+
+          // Show success
+          form.style.display = 'none';
+          const msg = document.getElementById('successMsg') as HTMLElement;
+          if (msg) {
+            msg.style.display = 'block';
+            msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+
+        } catch (err: any) {
+          alert(err.message);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      });
+    }
+
+    // Remove error on input
+    document.querySelectorAll('.form-input, .form-select').forEach(function(el) {
+      el.addEventListener('input', function() { el.classList.remove('error'); });
+      el.addEventListener('change', function() { el.classList.remove('error'); });
+    });
+
+    /* ── NAVBAR active link on scroll ── */
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function(link) {
+            (link as HTMLElement).style.color = '';
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              (link as HTMLElement).style.color = 'var(--orange)';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(function(s) { sectionObserver.observe(s); });
+
+    return () => {
+      statsObserver?.disconnect();
+      sectionObserver.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <style>{`
@@ -668,9 +830,9 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
 }
       `}</style>
       
-<!-- ━━━━ NAVBAR ━━━━ -->
+      {/* ━━━━ NAVBAR ━━━━ */}
 <nav className="navbar" role="navigation" aria-label="Navigation principale">
-  <a href="#hero" className="nav-brand"><img src="logo.png" alt="TEC Groupe" className="nav-logo" /></a>
+  <a href="#hero" className="nav-brand"><img src="/logo.png" alt="TEC Groupe" className="nav-logo" /></a>
   <ul className="nav-links" role="list">
     <li><a href="#programme">Programme</a></li>
     <li><a href="#pourquoi">Résultats</a></li>
@@ -679,7 +841,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   <a href="#postuler" className="nav-cta">POSTULER →</a>
 </nav>
 
-<!-- ━━━━ HERO ━━━━ -->
+      {/* ━━━━ HERO ━━━━ */}
 <section id="hero" aria-label="Section principale">
 
   <div className="streaks" aria-hidden="true">
@@ -692,30 +854,30 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   <div className="glow" aria-hidden="true"></div>
   <div className="deco" aria-hidden="true"></div>
 
-  <!-- Logos -->
+    {/* Logos */}
   <div className="logos">
     <div className="logo-wrap">
-      <img className="logo-img" src="logo.png" alt="TEC Groupe" />
+      <img className="logo-img" src="/logo.png" alt="TEC Groupe" />
       <span className="logo-label">Opérateur</span>
     </div>
     <span className="logo-sep" aria-hidden="true">×</span>
     <div className="logo-wrap">
-      <img className="logo-img" src="logounfm_fc561731bb.png" alt="UNFM" />
+      <img className="logo-img" src="/logounfm_fc561731bb.png" alt="UNFM" />
       <span className="logo-label">Partenaire</span>
     </div>
     <span className="logo-sep" aria-hidden="true">|</span>
     <div className="logo-wrap">
-      <img className="logo-img" src="LOGO_ANAPEC.png" alt="ANAPEC" />
+      <img className="logo-img" src="/LOGO_ANAPEC.png" alt="ANAPEC" />
       <span className="logo-label">Bailleur</span>
     </div>
     <div className="logo-wrap">
-      <img className="logo-img" src="c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
+      <img className="logo-img" src="/c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
       <span className="logo-label">Partenaire</span>
     </div>
     <span className="logo-sep" style={{ opacity: '0.3' }}>|</span>
   </div>
 
-  <!-- Hero Content -->
+    {/* Hero Content */}
   <div className="hero-content">
     <div className="badge-row">
       <span className="badge bg">// GROUPE_06</span>
@@ -739,11 +901,11 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
     </div>
   </div>
 
-  <!-- Scroll arrow -->
+    {/* Scroll arrow */}
   <a href="#programme" className="scroll-arrow" aria-label="Défiler vers le bas">↓</a>
 </section>
 
-<!-- ━━━━ PROGRAMME ━━━━ -->
+{/* ━━━━ PROGRAMME ━━━━ */}
 <div id="programme" style={{ background: '#080808' }}>
   <div className="section">
     <div className="section-kicker">// Status</div>
@@ -767,7 +929,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   </div>
 </div>
 
-<!-- ━━━━ RÉSULTATS ━━━━ -->
+{/* ━━━━ RÉSULTATS ━━━━ */}
 <div id="pourquoi" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
   <div className="section">
     <div className="section-kicker">// Chiffres clés</div>
@@ -795,17 +957,17 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   </div>
 </div>
 
-<!-- ━━━━ FORMULAIRE ━━━━ -->
+{/* ━━━━ FORMULAIRE ━━━━ */}
 <div id="postuler" style={{ background: 'var(--surface)', borderTop: '3px solid var(--orange)' }}>
   <div className="section">
     <div className="section-kicker">// Dossier de candidature</div>
     <h2 className="section-title">FORMULAIRE DE SÉLECTION</h2>
     <p className="section-sub">Veuillez remplir vos informations réelles pour être contacté pour l'entretien.</p>
 
-    <!-- FORM -->
+        {/* FORM */}
     <form id="inscriptionForm" noValidate>
       <div className="form-grid">
-        <!-- ROW 1 -->
+                {/* ROW 1 */}
         <div className="form-group">
           <label className="form-label" htmlFor="nom_complet">NOM COMPLET *</label>
           <input type="text" id="nom_complet" name="nom_complet" className="form-input" placeholder="ex: Ahmed El Mansouri" required />
@@ -814,7 +976,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
           <label className="form-label" htmlFor="age">ÂGE *</label>
           <input type="number" id="age" name="age" className="form-input" placeholder="ex: 24" min="18" max="45" required />
         </div>
-        <!-- ROW 2 -->
+                {/* ROW 2 */}
         <div className="form-group">
           <label className="form-label" htmlFor="tel">TÉLÉPHONE (WHATSAPP) *</label>
           <input type="tel" id="tel" name="telephone" className="form-input" placeholder="0600000000" required style={{ pointerEvents: 'auto', cursor: 'text', position: 'relative', zIndex: '10' }} />
@@ -823,7 +985,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
           <label className="form-label" htmlFor="email">EMAIL</label>
           <input type="email" id="email" name="email" className="form-input" placeholder="ex: ahmed@gmail.com" />
         </div>
-        <!-- ROW 3 -->
+                {/* ROW 3 */}
         <div className="form-group">
           <label className="form-label" htmlFor="region">RÉGION *</label>
           <select id="region" name="region" className="form-select" required>
@@ -920,7 +1082,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
       </div>
     </form>
 
-    <!-- Success message -->
+        {/* Success message */}
     <div id="successMsg" role="alert" aria-live="polite">
       <span className="success-icon" aria-hidden="true">✓</span>
       <div className="success-title">Candidature envoyée ✓</div>
@@ -930,10 +1092,10 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   </div>
 </div>
 
-<!-- ━━━━ FOOTER ━━━━ -->
+{/* ━━━━ FOOTER ━━━━ */}
 <footer className="site-footer" role="contentinfo">
   <div className="footer-inner">
-    <!-- LEFT -->
+        {/* LEFT */}
     <div className="footer-col">
       <div className="footer-brand-name">Training Edge Consulting</div>
       <div className="footer-partners-row">
@@ -944,7 +1106,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
       <div className="footer-copy">© 2026 — Béni-Mellal, Maroc</div>
     </div>
 
-    <!-- CENTER -->
+        {/* CENTER */}
     <nav className="footer-nav" aria-label="Liens du site">
       <a href="#hero">Accueil</a>
       <a href="#programme">Programme</a>
@@ -952,7 +1114,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
       <a href="#postuler">Candidater</a>
     </nav>
 
-    <!-- RIGHT -->
+        {/* RIGHT */}
     <div className="footer-contact">
       <a href="tel:+212608635578" className="footer-phone">+212 608 635 578</a>
       <a href="mailto:trainingedgeconsulting@gmail.com" className="footer-email">trainingedgeconsulting@gmail.com</a>
@@ -971,156 +1133,9 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
   </div>
 </footer>
 
-<!-- ━━━━ JAVASCRIPT ━━━━ -->
+{/* ━━━━ JAVASCRIPT ━━━━ */}
 
-      
-      <script dangerouslySetInnerHTML={{__html: `
-        const API_URL = '/api/candidatures';
-/* ── COUNT-UP ANIMATION ── */
-function countUp(el, target, duration) {
-  duration = duration || 1500;
-  let start = 0;
-  let step = target / 60;
-  let suffix = el.dataset.suffix || '';
-  let timer = setInterval(function() {
-    start += step;
-    if (start >= target) {
-      el.textContent = target + suffix;
-      clearInterval(timer);
-      return;
-    }
-    el.textContent = Math.floor(start) + suffix;
-  }, duration / 60);
-}
 
-// IntersectionObserver for stats
-const statsEl = document.querySelector('.stats-grid');
-if (statsEl) {
-  let fired = false;
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting && !fired) {
-        fired = true;
-        document.querySelectorAll('.stat-n').forEach(function(el) {
-          const target = parseInt(el.dataset.target, 10);
-          if (!isNaN(target) && target > 0) {
-            countUp(el, target, 1500);
-          }
-        });
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(statsEl);
-}
-
-/* ── FORM VALIDATION & SUBMISSION ── */
-document.getElementById('inscriptionForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const submitBtn = form.querySelector('.submit-btn');
-  const requiredFields = ['nom_complet', 'age', 'tel', 'region', 'ville', 'niveau'];
-  let valid = true;
-
-  // Clear previous errors
-  document.querySelectorAll('.form-input, .form-select').forEach(function(el) {
-    el.classList.remove('error');
-  });
-
-  const data = {
-    nom: document.getElementById('nom_complet').value,
-    prenom: '',
-    telephone: document.getElementById('tel').value,
-    ville: document.getElementById('ville').value,
-    region: document.getElementById('region').value,
-    age: document.getElementById('age').value,
-    email: document.getElementById('email').value,
-    niveau: document.getElementById('niveau').value,
-    motivations: Array.from(document.querySelectorAll('input[name="motivations"]:checked')).map(function(cb){ return cb.value; }).join(', '),
-    notes: document.getElementById('message').value
-  };
-
-  requiredFields.forEach(function(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (!el.value || el.value.trim() === '') {
-      el.classList.add('error');
-      valid = false;
-    }
-  });
-
-  // Phone Validation (Maroc)
-  const phoneEl = document.getElementById('tel');
-  const phoneRegex = /^(\+212|00212|0)[5-9]\d{8}$/;
-  if (phoneEl && !phoneRegex.test(phoneEl.value.replace(/\s/g,''))) {
-    phoneEl.classList.add('error');
-    valid = false;
-  }
-
-  if (!valid) {
-    const firstError = document.querySelector('.error');
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstError.focus();
-    }
-    return;
-  }
-
-  // Loading state
-  const originalBtnText = submitBtn.textContent;
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Envoi en cours...';
-
-  try {
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const json = await res.json();
-
-    if (!res.ok) throw new Error(json.error || 'Erreur lors de l\'envoi');
-
-    // Show success
-    form.style.display = 'none';
-    const msg = document.getElementById('successMsg');
-    msg.style.display = 'block';
-    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-  } catch (err) {
-    alert(err.message);
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalBtnText;
-  }
-});
-
-// Remove error on input
-document.querySelectorAll('.form-input, .form-select').forEach(function(el) {
-  el.addEventListener('input', function() { el.classList.remove('error'); });
-  el.addEventListener('change', function() { el.classList.remove('error'); });
-});
-
-/* ── NAVBAR active link on scroll ── */
-const sections = document.querySelectorAll('section[id], div[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-const sectionObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      navLinks.forEach(function(link) {
-        link.style.color = '';
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.style.color = 'var(--orange)';
-        }
-      });
-    }
-  });
-}, { threshold: 0.4 });
-
-sections.forEach(function(s) { sectionObserver.observe(s); });
-      `}} />
     </>
   );
 }
