@@ -709,7 +709,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
       <img class="logo-img" src="logo_aqj__1_-removebg-preview.png" alt="AQJ">
       <span class="logo-label">Partenaire</span>
     </div>
-        <span class="logo-sep" aria-hidden="true">|</span>
+        <span class="logo-sep" aria-hidden="true"></span>
 
     <div class="logo-wrap">
       <img class="logo-img" src="logounfm_fc561731bb.png" alt="UNFM">
