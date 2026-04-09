@@ -875,6 +875,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
       <img className="logo-img" src="/LOGO_ANAPEC.png" alt="ANAPEC" />
       <span className="logo-label">Partenaire</span>
     </div>
+    <span className="logo-sep" aria-hidden="true">|</span>
     <div className="logo-wrap">
       <img className="logo-img" src="/c1335743-7b7d-4ea7-b575-2b30671e5be1.png" alt="swisscontact" />
       <span className="logo-label">Partenaire</span>
@@ -888,7 +889,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
     <div className="badge-row">
       <span className="badge bg">// GROUPE_06</span>
       <span className="badge bc">FRANÇAIS PRO</span>
-      <span className="badge br">⚠ 16 PLACES</span>
+      <span className="badge br">⚠ X16 PLACES</span>
     </div>
 
     <h1 className="hero-title">INSCRIPTION<br />EN LIGNE</h1>
@@ -897,7 +898,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
     <div className="divider" aria-hidden="true"></div>
 
     <p className="hero-desc">
-      Formation 100% gratuite à Béni-Mellal · 16 places disponibles<br />
+      Formation 100% gratuite à Béni-Mellal · X16 places disponibles<br />
       Sélection sur entretien individuel — Session 2026
     </p>
 
@@ -948,7 +949,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
         <div className="stat-l">Gratuit</div>
       </div>
       <div className="stat" role="listitem">
-        <div className="stat-n" data-target="4" data-suffix="">4</div>
+        <div className="stat-n" data-target="6" data-suffix="">6</div>
         <div className="stat-l">Mois de<br />formation</div>
       </div>
       <div className="stat" role="listitem">
@@ -956,7 +957,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
         <div className="stat-l">Promotion<br />en cours</div>
       </div>
       <div className="stat" role="listitem">
-        <div className="stat-n" data-target="16" data-suffix="">16</div>
+        <div className="stat-n" data-target="" data-suffix="">X16</div>
         <div className="stat-l">Places<br />disponibles</div>
       </div>
     </div>
